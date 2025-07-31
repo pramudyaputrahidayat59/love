@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=500" />
+  <title>Kejutan Untukmu Sayangg</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom, #ffe4ec, #ffdce5);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+      text-align: center;
+    }
+
+    .envelope {
+      width: 180px;
+      animation: float 3s ease-in-out infinite;
+      z-index: 2;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.8em;
+      color: #d81b60;
+      margin: 30px 0 10px;
+      z-index: 2;
+    }
+
+    p {
+      font-size: 1em;
+      color: #5d4037;
+      margin-bottom: 20px;
+      z-index: 2;
+    }
+
+    input {
+      padding: 10px 20px;
+      font-size: 1em;
+      border: 2px solid #f48fb1;
+      border-radius: 25px;
+      outline: none;
+      margin-bottom: 10px;
+      z-index: 2;
+    }
+
+    button {
+      padding: 10px 30px;
+      font-size: 1em;
+      border: none;
+      border-radius: 25px;
+      background-color: #f06292;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      z-index: 2;
+    }
+
+    button:hover {
+      background-color: #d81b60;
+      transform: scale(1.05);
+    }
+
+    .message {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #c2185b;
+      z-index: 2;
+    }
+
+    .floating-icons {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .icon {
+      position: absolute;
+      color: #f06292;
+      font-size: 20px;
+      animation: fall 10s linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    #loading {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.5em;
+      color: #d81b60;
+      background-color: #fff0f5;
+      padding: 20px 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      display: none;
+      z-index: 10;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* BLOK MEDIA QUERY DIHAPUS AGAR TAMPILAN TIDAK BERUBAH DI HP */
+
+  </style>
+</head>
+<body>
+  <div class="floating-icons" id="floating-container"></div>
+  <img src="imageslove.png" alt="Amplop Cinta" class="envelope" />
+  <h1>Pesan Rahasia Untukmu Sayangku💌</h1>
+  <p>Masukkan tanggal jadian kita sayanggg</p>
+  <input type="text" id="codeInput" placeholder="Masukkan tanggal..." /><br />
+  <button onclick="checkCode()">Buka Sekarang</button>
+  <div class="message" id="message"></div>
+  <div id="loading">Tunggu yaa... kejutan manis sedang disiapkan 🎁</div>
+
+  <canvas id="confetti"></canvas>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <script>
+    const loading = document.getElementById('loading');
+
+    function showConfetti() {
+      confetti({
+        particleCount: 150,
+        spread: 90,
+        origin: { y: 0.6 },
+      });
+    }
+
+    function checkCode() {
+      const input = document.getElementById('codeInput').value;
+      const message = document.getElementById('message');
+      if (input === '14122021') {
+        message.textContent = '🎉 Yeaayy berhasil! Kamu inget!';
+        showConfetti();
+        loading.style.display = 'block';
+        setTimeout(() => {
+          document.body.style.transition = 'opacity 1s';
+          document.body.style.opacity = 0;
+          setTimeout(() => {
+            window.location.href = 'kejutan.html';
+          }, 1000);
+        }, 2000);
+      } else {
+        message.textContent = '😢 Sedihh... kok lupaa sih? sengajaa bangetttt disalahinn ishhh😠';
+      }
+    }
+
+    const icons = ['💖', '🌸', '💗', '🌷', '💕', '🌹', '🌺', '🤍', '🩷', '🧡', '❤️‍🩹', '💓'];
+    const container = document.getElementById('floating-container');
+
+    function createIcon() {
+      const icon = document.createElement('div');
+      icon.classList.add('icon');
+      icon.innerText = icons[Math.floor(Math.random() * icons.length)];
+      icon.style.left = Math.random() * 100 + 'vw';
+      icon.style.fontSize = (Math.random() * 20 + 20) + 'px';
+      icon.style.animationDuration = (Math.random() * 5 + 8) + 's';
+      container.appendChild(icon);
+
+      setTimeout(() => {
+        icon.remove();
+      }, 10000);
+    }
+
+    setInterval(createIcon, 400);
+  </script>
+</body>
+</html>

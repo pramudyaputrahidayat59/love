@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Untukmu Sayang ❤️</title>
+  
+  <meta name="viewport" content="width=600">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Caveat:wght@400;500&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
+
+  <style>
+    /* CSS untuk tampilan romantis */
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Caveat', cursive;
+      background: linear-gradient(to top, #fcefee 0%, #ffffff 100%);
+      color: #5d4954;
+      text-align: center;
+      overflow-x: hidden; /* Mencegah scroll horizontal karena hati */
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 20px;
+      box-sizing: border-box;
+      position: relative; /* Diperlukan untuk z-index */
+      z-index: 1;
+    }
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3.5rem; /* Ukuran font disesuaikan agar pas */
+      color: #d83a56;
+      margin-bottom: 0;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .subtitle {
+        font-size: 1.5rem;
+        margin-top: 10px;
+        margin-bottom: 25px;
+        color: #7a7a7a;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #887b83;
+    }
+
+    #mycanvas {
+      border: 1px solid #eee;
+      width: 500px;
+      height: 500px;
+      background-color: #fffcf8;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    #mycanvas:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .footer {
+        margin-top: 20px;
+        font-size: 1.3rem; /* Sedikit diperbesar */
+        font-weight: 500; /* Sedikit ditebalkan */
+        color: #d83a56;
+    }
+
+    /* --- CSS UNTUK ANIMASI HATI --- */
+    .heart-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none; /* Agar tidak bisa diklik */
+        z-index: 0; /* Di belakang konten utama */
+    }
+
+    .heart {
+        position: absolute;
+        font-size: 20px;
+        color: red;
+        animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(105vh);
+            opacity: 0;
+        }
+    }
+    /* --- AKHIR CSS HATI --- */
+  </style>
+</head>
+<body>
+
+  <div class="heart-container" id="heart-container"></div>
+
+  <div class="container">
+    <h1>Happy Girlfriend Dayy Sayangkuuu</h1>
+    <p class="subtitle">Karena setiap momen adalah waktu yang tepat untuk sesuatu yang indah...</p>
+    <p>Sabar sebentar, sebuah kejutan sedang dilukis untukmu.</p>
+
+    <div id="mycanvas"></div>
+    
+    <p class="footer">Baik baikk yaa cantikkkuuu selagi kita jauhh, i love uu sayangkuuu 💖</p>
+  </div>
+
+  <script type="text/python" id="code">
+import turtle
+
+# Atur posisi awal agar bunga di tengah dan tidak terpotong
+turtle.penup()
+turtle.fd(30)
+turtle.left(90)
+turtle.fd(153) # Posisi disesuaikan agar tidak terlalu tinggi
+turtle.right(90)
+turtle.pendown()
+
+# flower base
+turtle.fillcolor("red")
+turtle.begin_fill()
+turtle.circle(10,180)
+turtle.circle(25,110)
+turtle.left(50)
+turtle.circle(60,45)
+turtle.circle(20,170)
+turtle.right(24)
+turtle.fd(30)
+turtle.left(10)
+turtle.circle(30,110)
+turtle.fd(20)
+turtle.left(40)
+turtle.circle(90,70)
+turtle.circle(30,150)
+turtle.right(30)
+turtle.fd(15)
+turtle.circle(80,90)
+turtle.left(15)
+turtle.fd(45)
+turtle.right(165)
+turtle.fd(20)
+turtle.left(155)
+turtle.circle(150,80)
+turtle.left(50)
+turtle.circle(150,90)
+turtle.end_fill()
+
+# Petal 1
+turtle.left(150)
+turtle.circle(-90,70)
+turtle.left(20)
+turtle.circle(75,105)
+turtle.setheading(60)
+turtle.circle(80,98)
+turtle.circle(-90,40)
+
+# Petal 2
+turtle.left(180)
+turtle.circle(90,40)
+turtle.circle(-80,98)
+turtle.setheading(-83)
+
+# Leaves 1
+turtle.fd(30)
+turtle.left(90)
+turtle.fd(25)
+turtle.left(45)
+turtle.fillcolor("green")
+turtle.begin_fill()
+turtle.circle(-80,90)
+turtle.right(90)
+turtle.circle(-80,90)
+turtle.end_fill()
+turtle.right(135)
+turtle.fd(60)
+turtle.left(180)
+turtle.fd(85)
+turtle.left(90)
+turtle.fd(80)
+
+# Leaves 2
+turtle.right(90)
+turtle.right(45)
+turtle.fillcolor("green")
+turtle.begin_fill()
+turtle.circle(80,90)
+turtle.left(90)
+turtle.circle(80,90)
+turtle.end_fill()
+turtle.left(135)
+turtle.fd(60)
+turtle.left(180)
+turtle.fd(60)
+turtle.right(90)
+turtle.circle(200,60)
+  </script>
+
+  <script>
+    // --- JAVASCRIPT UNTUK ANIMASI HATI ---
+    function createHeart() {
+        const container = document.getElementById('heart-container');
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.innerHTML = '❤️';
+        
+        // Atur properti acak
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = (Math.random() * 3 + 2) + 's'; // Durasi 2-5 detik
+        heart.style.fontSize = (Math.random() * 10 + 10) + 'px'; // Ukuran 10-20px
+
+        container.appendChild(heart);
+
+        // Hapus hati dari DOM setelah animasi selesai
+        setTimeout(() => {
+            heart.remove();
+        }, 5000); // Hapus setelah 5 detik
+    }
+
+    // Buat hati baru setiap 300ms
+    setInterval(createHeart, 300);
+    // --- AKHIR JAVASCRIPT HATI ---
+
+
+    function builtinRead(x) {
+      if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined) {
+        throw "File not found: '" + x + "'";
+      }
+      return Sk.builtinFiles["files"][x];
+    }
+
+    function run() {
+      const prog = document.getElementById("code").textContent;
+      Sk.configure({
+        output: function () {},
+        read: builtinRead
+      });
+      (Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = "mycanvas";
+      Sk.misceval.asyncToPromise(function () {
+        return Sk.importMainWithBody("<stdin>", false, prog, true);
+      }).catch(err => console.error(err.toString()));
+    }
+
+    window.addEventListener("load", run);
+  </script>
+</body>
+</html>

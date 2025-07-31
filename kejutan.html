@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesan Untukmu Sayangg</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Great+Vibes&family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap');
+
+        :root {
+            --primary-color: #e91e63;
+            --secondary-color: #f06292;
+            --background-start: #fce4ec;
+            --background-mid: #f8bbd0;
+            --background-end: #f48fb1;
+            --text-color: #3e2723;
+            --bokeh-color-1: rgba(255, 255, 255, 0.2);
+            --bokeh-color-2: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, var(--background-start), var(--background-mid), var(--background-end), var(--secondary-color));
+            background-size: 400% 400%;
+            animation: gradientBG 20s ease infinite;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .bokeh-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .bokeh {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0;
+            animation: floatBokeh 12s infinite ease-in-out;
+            filter: blur(5px);
+        }
+
+        .bokeh:nth-child(1) { width: 60px; height: 60px; background: var(--bokeh-color-1); top: 10%; left: 10%; animation-delay: 0s; }
+        .bokeh:nth-child(2) { width: 80px; height: 80px; background: var(--bokeh-color-2); top: 80%; left: 20%; animation-delay: 2s; }
+        .bokeh:nth-child(3) { width: 40px; height: 40px; background: var(--bokeh-color-1); top: 30%; left: 35%; animation-delay: 5s; }
+        .bokeh:nth-child(4) { width: 100px; height: 100px; background: var(--bokeh-color-2); top: 60%; left: 50%; animation-delay: 1s; }
+        .bokeh:nth-child(5) { width: 50px; height: 50px; background: var(--bokeh-color-1); top: 20%; left: 70%; animation-delay: 3s; }
+        .bokeh:nth-child(6) { width: 90px; height: 90px; background: var(--bokeh-color-2); top: 70%; left: 85%; animation-delay: 6s; }
+        .bokeh:nth-child(7) { width: 70px; height: 70px; background: var(--bokeh-color-1); top: 40%; left: 90%; animation-delay: 8s; }
+        .bokeh:nth-child(8) { width: 30px; height: 30px; background: var(--bokeh-color-2); top: 90%; left: 5%; animation-delay: 10s; }
+
+        @keyframes floatBokeh {
+            0% { transform: translateY(0) scale(0.8); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-150px) scale(1.2); opacity: 0; }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header {
+            padding: 60px 20px 40px 20px;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4.5em;
+            color: var(--primary-color);
+            margin: 0;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            margin-top: 0px;
+            animation: fadeInUp 1s ease-out 0.5s;
+            animation-fill-mode: backwards;
+        }
+
+        .section {
+            padding: 50px 30px;
+            margin-top: 30px;
+            background-color: rgba(255, 255, 255, 0.9);
+            background-image: url("data:image/svg+xml,%3Csvg width='42' height='42' viewBox='0 0 42 42' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Group 4' fill='none' fill-rule='evenodd'%3E%3Cg id='heart' transform='translate(14 14)' fill='%23f48fb1' fill-opacity='0.15'%3E%3Cpath d='M10.29 3.86c1.55-1.55 4.05-1.55 5.6 0l.85.85.85-.85c1.55-1.55 4.05-1.55 5.6 0 1.55 1.55 1.55 4.05 0 5.6l-6.45 6.45c-.23.23-.61.23-.85 0l-6.45-6.45c-1.55-1.55-1.55-4.05 0-5.6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),
+                                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23F06292' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: repeat, repeat;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before, .section::after {
+            content: '🌸';
+            color: rgba(255, 179, 216, 0.2);
+            position: absolute;
+            font-size: 90px;
+            z-index: 0;
+            animation: spin 30s linear infinite;
+        }
+
+        .section::before { top: -15px; right: -20px; }
+        .section::after { bottom: -15px; left: -20px; transform: rotate(180deg); }
+        .section > * { position: relative; z-index: 1; }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8em;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+        .gallery img {
+            width: 100%; height: 250px; object-fit: cover; border-radius: 15px;
+            border: 4px solid white; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;
+        }
+        .gallery img:hover { transform: scale(1.05) rotate(1deg); box-shadow: 0 8px 25px rgba(0,0,0,0.2); }
+
+        .modal {
+            display: none; position: fixed; z-index: 1001; padding-top: 50px;
+            left: 0; top: 0; width: 100%; height: 100%; overflow: auto;
+            background-color: rgba(0,0,0,0.85);
+        }
+        .modal-content { margin: auto; display: block; width: auto; max-width: 80%; max-height: 85%; animation: zoomIn 0.6s ease; }
+        .close-modal { position: absolute; top: 15px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer; }
+        .close-modal:hover, .close-modal:focus { color: #bbb; text-decoration: none; }
+        @keyframes zoomIn { from {transform: scale(0)} to {transform: scale(1)} }
+        
+        .reasons-list-container {
+            position: relative;
+            width: 100%;
+            height: 450px; 
+            margin: 0 auto;
+            max-width: 600px;
+        }
+
+        .reasons-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .reasons-list li {
+            position: absolute; 
+            background: linear-gradient(45deg, #fffde7, #fff9c4);
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid #fff59d;
+            display: flex;
+            align-items: center;
+            font-size: 0.95em;
+            width: 250px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .reasons-list li:hover {
+            transform: scale(1.1) !important;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+
+        .reasons-list li::before {
+            content: '📌'; 
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        #reason-1 { top: 20px; left: 5%; transform: rotate(-6deg); }
+        #reason-2 { top: 120px; left: 40%; transform: rotate(4deg); }
+        #reason-3 { top: 80px; left: -3%; transform: rotate(8deg); }
+        #reason-4 { top: 180px; left: 15%; transform: rotate(-3deg); }
+        #reason-5 { top: 260px; left: 38%; transform: rotate(10deg); }
+        #reason-6 { top: 60px; left: 58%; transform: rotate(5deg); }
+        #reason-7 { top: 300px; left: -5%; transform: rotate(-5deg); }
+        #reason-8 { top: 170px; left: -8%; transform: rotate(3deg); }
+        #reason-9 { top: 240px; left: 10%; transform: rotate(-2deg); }
+        #reason-10 { top: 320px; left: 30%; transform: rotate(7deg); }
+        #reason-11 { top: 360px; left: 50%; transform: rotate(-4deg); }
+        #reason-12 { top: 100px; left: 20%; transform: rotate(6deg); }
+        #reason-13 { top: 220px; left: 55%; transform: rotate(-6deg); }
+        #reason-14 { top: 380px; left: 5%; transform: rotate(2deg); }
+        #reason-15 { top: 400px; left: 35%; transform: rotate(9deg); }
+
+        .vouchers { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; }
+        .voucher {
+            background: linear-gradient(135deg, #ffffff 0%, #fff7f9 100%); border-radius: 15px; padding: 25px;
+            width: 260px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); position: relative;
+            overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .voucher:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(216, 27, 96, 0.15); }
+        .voucher::before, .voucher::after {
+            content: ''; position: absolute; width: 20px; height: 100%; top: 0;
+            background-image: radial-gradient(circle at 0 10px, transparent, transparent 10px, #fdeaf1 10px, #fdeaf1 20px);
+            background-size: 20px 20px;
+        }
+        .voucher::before { left: -10px; background-position: 0 0; }
+        .voucher::after { right: -10px; transform: rotate(180deg); }
+        .voucher h3 { font-family: 'Playfair Display', serif; margin: 10px 0 5px 0; color: var(--primary-color); font-size: 1.3em; display: flex; align-items: center; }
+        .voucher p { margin: 0; font-size: 0.9em; line-height: 1.5; }
+        .voucher-icon { font-size: 1.5em; margin-right: 10px; color: var(--secondary-color); }
+        
+        .letter {
+            background-color: rgba(255, 248, 225, 0.85);
+            padding: 40px 50px;
+            border: 1px solid #f7eac9;
+            border-radius: 10px;
+            box-shadow: 5px 5px 25px rgba(0,0,0,0.1);
+            position: relative;
+            margin-top: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .letter h2 { text-align: left; }
+        .letter p {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2em; font-weight: 700; line-height: 1.6;
+            color: #5d4037; text-align: left; margin-bottom: 20px;
+        }
+        .letter p.signature { font-family: 'Dancing Script', cursive; font-size: 1.8em; font-weight: 700; text-align: right; margin-top: 30px; margin-bottom: 10px; }
+        .letter::before { content: "🎀"; position: absolute; top: 5px; right: 5px; font-size: 40px; opacity: 0.8; transform: rotate(10deg); color: #e53935; }
+        
+        .surprise-button {
+            background-color: var(--primary-color); color: white; font-size: 1.2em; font-weight: bold;
+            padding: 15px 30px; border: none; border-radius: 50px; cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
+        }
+        .surprise-button:hover { transform: scale(1.1); background-color: #c2185b; }
+
+        .timer-section {
+            padding: 40px 20px;
+            margin-top: 30px;
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
+        }
+        .timer-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .timer-box {
+            background: var(--background-start);
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 80px;
+        }
+        .timer-box .time {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            color: var(--primary-color);
+        }
+        .timer-box .label {
+            font-size: 0.9em;
+            text-transform: uppercase;
+            color: var(--text-color);
+        }
+
+        .music-player {
+            position: fixed; top: 15px; right: 15px; background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(5px); border-radius: 50%; width: 50px; height: 50px;
+            display: flex; justify-content: center; align-items: center; cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 1000;
+            color: var(--primary-color);
+        }
+        .music-player span { font-size: 24px; }
+        
+        .footer { margin-top: 50px; padding: 20px; font-size: 1em; color: #fff; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
+        .heart-footer { color: #fff; font-size: 2em; animation: pulse 1.5s infinite; }
+
+        .flying-element {
+            position: fixed;
+            top: 110%;
+            left: -10%;
+            font-size: 20px;
+            color: var(--secondary-color);
+            animation: fly-up linear forwards;
+            z-index: 0;
+            opacity: 0.7;
+        }
+        @keyframes fly-up {
+            to {
+                transform: translateY(-120vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        @keyframes fall-down {
+            to {
+                transform: translateY(120vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.15); } 100% { transform: scale(1); } }
+        
+        /* BLOK MEDIA QUERY DIHAPUS AGAR TAMPILAN TIDAK BERUBAH DI PERANGKAT APAPUN */
+
+    </style>
+</head>
+<body>
+    <div class="bokeh-container">
+        <div class="bokeh"></div><div class="bokeh"></div><div class="bokeh"></div>
+        <div class="bokeh"></div><div class="bokeh"></div><div class="bokeh"></div>
+        <div class="bokeh"></div><div class="bokeh"></div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <h1>Untukmu, sayangggg</h1>
+            <p>Satu halaman ini penuh cintaa, hanya untukmu.</p>
+        </header>
+
+        <section class="section">
+            <h2>Galeri Perjalanan Kitaaa</h2>
+            <div class="gallery">
+                <img src="2.jpg" alt="Kenangan 1" class="gallery-item">
+                <img src="4.jpg" alt="Kenangan 2" class="gallery-item">
+                <img src="3.jpg" alt="Kenangan 3" class="gallery-item">
+                <img src="6.jpg" alt="Kenangan 4" class="gallery-item">
+                <img src="7.jpg" alt="Kenangan 5" class="gallery-item">
+                <img src="5.jpg" alt="Kenangan 6" class="gallery-item">
+                <img src="8.jpg" alt="Kenangan 7" class="gallery-item">
+                <img src="10.jpg" alt="Kenangan 8" class="gallery-item">
+                <img src="11.jpg" alt="Kenangan 9" class="gallery-item">
+                <img src="12.jpg" alt="Kenangan 10" class="gallery-item">
+                <img src="14.jpg" alt="Kenangan 11" class="gallery-item">
+                <img src="15.jpg" alt="Kenangan 12" class="gallery-item">
+                <img src="13.jpg" alt="Kenangan 13" class="gallery-item">
+                <img src="16.jpg" alt="Kenangan 14" class="gallery-item">
+                <img src="19.jpg" alt="Kenangan 15" class="gallery-item">
+                <img src="17.jpg" alt="Kenangan 16" class="gallery-item">
+                <img src="18.jpg" alt="Kenangan 17" class="gallery-item">
+                <img src="24.jpg" alt="Kenangan 18" class="gallery-item">
+                <img src="9.jpg" alt="Kenangan 19" class="gallery-item">
+                <img src="23.jpg" alt="Kenangan 20" class="gallery-item">
+                <img src="18.jpg" alt="Kenangan 21" class="gallery-item">
+                <img src="21.jpg" alt="Kenangan 22" class="gallery-item">
+                <img src="20.jpg" alt="Kenangan 23" class="gallery-item">
+                <img src="22.jpg" alt="Kenangan 24" class="gallery-item">
+                <img src="25.jpg" alt="Kenangan 25" class="gallery-item">
+                <img src="26.jpg" alt="Kenangan 26" class="gallery-item">
+                <img src="27.jpg" alt="Kenangan 27" class="gallery-item">
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Hal-Hal Kecil ini Bikin Aya Selalu Seneng dan Bersyukur Bersamamu Sayanggg</h2>
+            <div class="reasons-list-container">
+                <ul class="reasons-list">
+                    <li id="reason-1">Cara kamu menyemangatiku saat aku lelah.</li>
+                    <li id="reason-2">Tawamu yang bisa mengubah hari yang buruk jadi indah.</li>
+                    <li id="reason-3">Saat kamu random mengirimiku meme lucu.</li>
+                    <li id="reason-4">Caramu menenangkanku saat aku panik.</li>
+                    <li id="reason-5">Selera humormu yang aneh tapi selalu nyambung denganku.</li>
+                    <li id="reason-6">Saat kamu tiba-tiba memuji hal kecil tentangku.</li>
+                    <li id="reason-7">Caramu mendengarkan semua ceritaku dengan sungguh-sungguh.</li>
+                    <li id="reason-8">Semua perhatianmu yang tak pernah putus.</li>
+                    <li id="reason-9">Caramu menatapku, seakan aku satu-satunya.</li>
+                    <li id="reason-10">Saat kamu mengingat detail kecil yang pernah aku ceritakan.</li>
+                    <li id="reason-11">Kehangatan tanganmu saat menggenggam tanganku.</li>
+                    <li id="reason-12">Caramu menghargai diriku dan membuatku merasa dicintai.</li>
+                    <li id="reason-13">Saat kita bisa diam bersama tanpa merasa canggung.</li>
+                    <li id="reason-14">Aroma parfummu yang selalu membuat candu.</li>
+                    <li id="reason-15">Karena kamu adalah kamu, dengan segala sempurnamu.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Voucher Edisi Terbatas, iniii Terbatass</h2>
+             <div class="vouchers">
+                <div class="voucher">
+                    <h3><span class="voucher-icon">🎟️</span> Voucher 1x Pelukan</h3>
+                    <p>Dapat diklaim kapan saja, terutama saat butuh energi tambahan.</p>
+                </div>
+                <div class="voucher">
+                    <h3><span class="voucher-icon">🎟️</span> Voucher 1x Jajan Apapun</h3>
+                    <p>Kamu yang pilih, aku yang bayar. Tanpa batas minimum!</p>
+                </div>
+                <div class="voucher">
+                    <h3><span class="voucher-icon">🎟️</span> Voucher Jadi Pendengar Setia</h3>
+                    <p>Siap mendengarkan semua ceritamu, dari A sampai Z, tanpa jeda iklan.</p>
+                </div>
+                <div class="voucher">
+                    <h3><span class="voucher-icon">🎟️</span> Voucher Nonton Maraton</h3>
+                    <p>Kamu yang pilih film/seriesnya, aku yang siapkan cemilannya.</p>
+                </div>
+                <div class="voucher">
+                    <h3><span class="voucher-icon">🎟️</span> Voucher Satu Hari Bebas Omelan</h3>
+                    <p>Berlaku 24 jam penuh. Nikmati kedamaian tanpa syarat & ketentuan.</p>
+                </div>
+                 <div class="voucher">
+                    <h3><span class="voucher-icon">🎟️</span> Voucher Bersenang Senang</h3>
+                    <p>Klaim setelah hari yang melelahkan, akan sangat menyenangkan jika bersenang senang denganmu</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="letter">
+                <h2>Sepucuk Surat Untukmu,</h2>
+                <p>Hai Sayanggg,</p>
+                <p>Selamat hari spesial untuk orang yang paling spesial di hidupku. Halaman ini mungkin sederhana, tapi setiap kata dan gambar yang tidak semuanya ada namun di dalamnya mewakili perasaanku yang begitu besar untukmu. Terima kasih karena aku bisa bersama kamu sampai sejauh ini dan kamu menjadi bagian terindah di hidupku, selagi kita jauh kita jaga ya sayanggg aya gabisa kalau harus berpisah denganmu. Dimanapun dan kapanpun aya akan selalu menyayangimu dan merindukanmu.</p>
+                <p>Aku harap kamu suka kejutan kecil ini, maaf kalau cuma bisa ngasih ini dan mungkin gaada apa apanyaa. Aku tidak sabar untuk membuat lebih banyak kenangan indah bersamamu, kita jaga sama sama yaa sayangg.</p>
+                
+                <p class="signature">Selalu sayang kamu,<br>aya</p>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>Satu Kejutan Terakhir...</h2>
+            <button class="surprise-button" id="surprise-btn">Klik terusss jangan berhentiiii</button>
+        </section>
+
+        <section class="section">
+            <h2>Tambahan Kejutan yang Terakhirrr</h2>
+            <button class="surprise-button" id="final-surprise-btn">Klik sayang</button>
+        </section>
+        <section class="timer-section">
+            <h2>Waktu Indah yang Telah Kita Lalui Bersama</h2>
+            <p>Menuju 4 Tahun</p>
+            <div class="timer-container" id="timer">
+                <div class="timer-box">
+                    <div id="days" class="time">0</div>
+                    <div class="label">Hari</div>
+                </div>
+                <div class="timer-box">
+                    <div id="hours" class="time">0</div>
+                    <div class="label">Jam</div>
+                </div>
+                <div class="timer-box">
+                    <div id="minutes" class="time">0</div>
+                    <div class="label">Menit</div>
+                </div>
+                <div class="timer-box">
+                    <div id="seconds" class="time">0</div>
+                    <div class="label">Detik</div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="heart-footer">💖</div>
+            <p>Dibuat dengan segenap hati pada 1 Agustus 2025</p>
+        </footer>
+    </div>
+    
+    <div id="imageModal" class="modal">
+      <span class="close-modal">&times;</span>
+      <img class="modal-content" id="modalImage">
+    </div>
+
+    <script>
+        // Animasi Latar Terbang
+        function createFlyingElement() {
+            const element = document.createElement('div');
+            const icons = ['💖', '💕', '💗', '❤️', '🌸', '🌷', '🌺', '✨'];
+            element.innerText = icons[Math.floor(Math.random() * icons.length)];
+            element.classList.add('flying-element');
+            
+            element.style.left = Math.random() * 100 + 'vw';
+            element.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            element.style.animationDuration = (Math.random() * 8 + 7) + 's';
+            
+            document.body.appendChild(element);
+            
+            setTimeout(() => {
+                element.remove();
+            }, 15000);
+        }
+        setInterval(createFlyingElement, 250);
+
+        // Modal Galeri Foto
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const galleryImages = document.querySelectorAll(".gallery-item");
+        const closeModal = document.getElementsByClassName("close-modal")[0];
+        galleryImages.forEach(img => {
+            img.onclick = function(){
+                modal.style.display = "block";
+                modalImg.src = this.src;
+            }
+        });
+        closeModal.onclick = function() { modal.style.display = "none"; }
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Tombol Kejutan Terakhir
+        document.getElementById('surprise-btn').addEventListener('click', function() {
+            for (let i = 0; i < 50; i++) {
+                const surpriseHeart = document.createElement('div');
+                surpriseHeart.innerHTML = '❤️';
+                surpriseHeart.style.position = 'fixed';
+                surpriseHeart.style.left = Math.random() * 100 + 'vw';
+                surpriseHeart.style.top = Math.random() * -100 + 'vh';
+                surpriseHeart.style.fontSize = Math.random() * 20 + 15 + 'px';
+                surpriseHeart.style.animation = 'fall-down 5s linear forwards'; 
+                surpriseHeart.style.zIndex = '1002';
+                document.body.appendChild(surpriseHeart);
+                surpriseHeart.addEventListener('animationend', function() {
+                    surpriseHeart.remove();
+                });
+            }
+        });
+
+        // Countdown Timer
+        function updateTimer() {
+            // PENTING: Ganti tanggal di bawah ini dengan tanggal jadian Anda (Format: TAHUN-BULAN-TANGGAL)
+            const startDate = new Date('2021-12-14T00:00:00'); 
+            const now = new Date();
+            const diff = now - startDate;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+        }
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        // =========== SCRIPT BARU UNTUK TOMBOL "KLIK SAYANG" ===========
+        document.getElementById('final-surprise-btn').addEventListener('click', function() {
+            // Ganti nama file di bawah ini dengan nama file HTML tujuanmu
+            window.location.href = 'bunga.html';
+        });
+        // =============================================================
+    </script>
+</body>
+</html>
